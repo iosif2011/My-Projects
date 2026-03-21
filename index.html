@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iosif2011 — My Sites</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background: #5b96e8;
+            min-height: 100vh;
+        }
+
+        /* NAV */
+        nav {
+            background: #7a5530;
+            background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.10) 0, rgba(0,0,0,.10) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(180deg, rgba(0,0,0,.08) 0, rgba(0,0,0,.08) 1px, transparent 1px, transparent 16px);
+            border-bottom: 6px solid #000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.2rem;
+            color: #ffd700;
+            text-shadow: 4px 4px 0 #000;
+        }
+
+        .nav-right {
+            font-size: .60rem;
+            color: #eee;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        /* GRASS STRIP */
+        .grass {
+            height: 28px;
+            background: linear-gradient(#6ecf3a, #4ea020);
+            border-bottom: 5px solid #000;
+        }
+
+        /* HEADER */
+        header {
+            background: #7a5530;
+            background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.10) 0, rgba(0,0,0,.10) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(180deg, rgba(0,0,0,.08) 0, rgba(0,0,0,.08) 1px, transparent 1px, transparent 16px);
+            border-bottom: 6px solid #000;
+            text-align: center;
+            padding: 70px 24px 60px;
+            position: relative;
+        }
+
+        .torch {
+            position: absolute;
+            top: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .torch-l {
+            left: 48px;
+        }
+
+        .torch-r {
+            right: 48px;
+        }
+
+        .torch-fire {
+            width: 14px;
+            height: 14px;
+            background: #ffd700;
+            border: 3px solid #000;
+            box-shadow: 0 0 14px 6px rgba(255,190,0,.7);
+            animation: flicker .7s step-end infinite alternate;
+        }
+
+        .torch-stick {
+            width: 7px;
+            height: 32px;
+            background: #7a4e1e;
+            border: 3px solid #000;
+            border-top: none;
+        }
+
+        @keyframes flicker {
+            to {
+                opacity: .55;
+                box-shadow: 0 0 4px 2px rgba(255,190,0,.2);
+            }
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 6vw, 3.8rem);
+            color: #ffd700;
+            text-shadow: 6px 6px 0 #000, 5px 5px 0 #b89000;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+            header h1 span {
+                color: #fff;
+                text-shadow: 4px 4px 0 #000;
+            }
+
+        header p {
+            font-size: .55rem;
+            color: #ccc;
+            text-shadow: 2px 2px 0 #000;
+            line-height: 2.8;
+        }
+
+            header p a {
+                color: #4ae4e4;
+            }
+
+                header p a:hover {
+                    color: #fff;
+                }
+
+        /* GITHUB FEATURED SECTION */
+        .github-section {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            background: #1a1a1a;
+            border: 6px solid #000;
+            box-shadow: inset 5px 5px 0 #3a3a3a, inset -5px -5px 0 #000, 8px 8px 0 #000;
+            cursor: pointer;
+            margin-bottom: 0;
+            transition: transform .1s, box-shadow .1s;
+            animation: rise .4s cubic-bezier(.34,1.56,.64,1) both;
+            outline-offset: -5px;
+        }
+
+            .github-section:hover {
+                transform: translate(-5px,-5px);
+                box-shadow: inset 5px 5px 0 #3a3a3a, inset -5px -5px 0 #000, 13px 13px 0 #000;
+                outline: 5px solid #ffd700;
+                outline-offset: -5px;
+            }
+
+        .github-img {
+            border-right: 6px solid #000;
+            background: #0d0d0d;
+            box-shadow: inset 6px 6px 0 rgba(0,0,0,.8);
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            min-height: 280px;
+        }
+
+            .github-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                padding: 30px;
+                display: block;
+                image-rendering: pixelated;
+                transition: transform .15s;
+                filter: brightness(1.1);
+            }
+
+        .github-section:hover .github-img img {
+            transform: scale(1.08);
+        }
+
+        .github-img .fallback {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #333;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .github-img .zoom-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            font-size: .38rem;
+            color: #ffd700;
+            text-shadow: 1px 1px 0 #000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .15s;
+        }
+
+        .github-section:hover .github-img .zoom-hint {
+            opacity: 1;
+        }
+
+        .github-content {
+            padding: 32px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .github-title {
+            font-size: 1.6rem;
+            color: #ffd700;
+            text-shadow: 4px 4px 0 #000, 3px 3px 0 #b89000;
+            line-height: 1.4;
+        }
+
+        .github-sub {
+            font-size: .65rem;
+            color: #6ecf3a;
+            text-shadow: 2px 2px 0 #000;
+            letter-spacing: .1em;
+        }
+
+        .github-desc {
+            font-size: .48rem;
+            color: #aaa;
+            text-shadow: 1px 1px 0 #000;
+            line-height: 2.3;
+        }
+
+        .github-url {
+            font-size: .40rem;
+            color: #4ae4e4;
+            text-shadow: 1px 1px 0 #000;
+            letter-spacing: .05em;
+            word-break: break-all;
+            line-height: 2;
+        }
+
+        .github-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 36px 28px 72px;
+        }
+
+        .section-label {
+            font-size: .72rem;
+            color: #fff;
+            text-shadow: 2px 2px 0 #000;
+            letter-spacing: .14em;
+            margin-bottom: 28px;
+        }
+
+        /* CARD LIST */
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            background: #c6c6c6;
+            border: 6px solid #000;
+            box-shadow: inset 5px 5px 0 #fff, inset -5px -5px 0 #555, 8px 8px 0 #000;
+            cursor: pointer;
+            transition: transform .1s, box-shadow .1s;
+            animation: rise .45s cubic-bezier(.34,1.56,.64,1) both;
+        }
+
+            .card:nth-child(2) {
+                animation-delay: .10s;
+            }
+
+            .card:nth-child(3) {
+                animation-delay: .20s;
+            }
+
+            .card:nth-child(4) {
+                animation-delay: .30s;
+            }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: inset 5px 5px 0 #fff, inset -5px -5px 0 #555, 13px 13px 0 #000;
+            outline: 5px solid #ffd700;
+            outline-offset: -5px;
+        }
+
+        /* IMAGE PANEL */
+        .card-img {
+            border-right: 6px solid #000;
+            background: #111;
+            box-shadow: inset 6px 6px 0 rgba(0,0,0,.55);
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            min-height: 240px;
+        }
+
+            .card-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                padding: 26px;
+                display: block;
+                image-rendering: pixelated;
+                transition: transform .15s;
+            }
+
+        .card:hover .card-img img {
+            transform: scale(1.08);
+        }
+
+        .card-img .fallback {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            color: #444;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .card-img .zoom-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            font-size: .38rem;
+            color: #ffd700;
+            text-shadow: 1px 1px 0 #000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .15s;
+        }
+
+        .card:hover .card-img .zoom-hint {
+            opacity: 1;
+        }
+
+        /* CONTENT PANEL */
+        .card-content {
+            padding: 28px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .card-num {
+            font-size: .42rem;
+            color: #606060;
+            letter-spacing: .1em;
+        }
+
+        .card-title {
+            font-size: .85rem;
+            color: #1a1a1a;
+            text-shadow: 1px 1px 0 rgba(255,255,255,.7);
+            line-height: 1.7;
+            word-break: break-word;
+        }
+
+        .card-desc {
+            font-size: .48rem;
+            color: #555;
+            line-height: 2.3;
+        }
+
+        .card-url {
+            font-size: .40rem;
+            color: #1a40b0;
+            letter-spacing: .04em;
+            word-break: break-all;
+            line-height: 2;
+        }
+
+        .card-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        /* MC BUTTON */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: .5rem;
+            color: #fff;
+            text-shadow: 2px 2px 0 #000;
+            letter-spacing: .06em;
+            padding: 13px 20px;
+            border: 4px solid #000;
+            cursor: pointer;
+            background: #787878;
+            box-shadow: inset 3px 3px 0 rgba(255,255,255,.22), inset -3px -3px 0 rgba(0,0,0,.5), 4px 4px 0 #000;
+            transition: transform .08s, background .08s, box-shadow .08s;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+            .btn:hover {
+                background: #999;
+                transform: translate(1px,1px);
+                box-shadow: inset 3px 3px 0 rgba(255,255,255,.22), inset -3px -3px 0 rgba(0,0,0,.5), 3px 3px 0 #000;
+            }
+
+            .btn:active {
+                transform: translate(4px,4px);
+                box-shadow: none;
+            }
+
+            .btn.green {
+                background: #2a6818;
+            }
+
+                .btn.green:hover {
+                    background: #3c9a22;
+                }
+
+            .btn svg {
+                width: 14px;
+                height: 14px;
+                fill: currentColor;
+            }
+
+        /* FOOTER */
+        .grass-foot {
+            height: 28px;
+            background: linear-gradient(#6ecf3a, #4ea020);
+            border-top: 5px solid #000;
+        }
+
+        footer {
+            background: #5a3e1c;
+            background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.12) 0, rgba(0,0,0,.12) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(180deg, rgba(0,0,0,.08) 0, rgba(0,0,0,.08) 1px, transparent 1px, transparent 16px);
+            border-top: 6px solid #000;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+            footer span {
+                font-size: .5rem;
+                color: #ddd;
+                text-shadow: 2px 2px 0 #000;
+                letter-spacing: .08em;
+            }
+
+            footer .live {
+                color: #6ecf3a;
+            }
+
+        /* LIGHTBOX */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.88);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+
+            #lightbox.open {
+                display: flex;
+            }
+
+            #lightbox img {
+                max-width: 86vw;
+                max-height: 82vh;
+                object-fit: contain;
+                border: 6px solid #000;
+                box-shadow: inset 4px 4px 0 rgba(255,255,255,.06), inset -4px -4px 0 rgba(0,0,0,.5), 14px 14px 0 #000;
+                image-rendering: pixelated;
+                animation: lbpop .14s ease;
+            }
+
+        @keyframes lbpop {
+            from {
+                opacity: 0;
+                transform: scale(.88);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        #lb-close {
+            position: fixed;
+            top: 22px;
+            right: 26px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: .7rem;
+            color: #fff;
+            text-shadow: 2px 2px 0 #000;
+            background: #cc1818;
+            border: 4px solid #000;
+            box-shadow: 5px 5px 0 #000;
+            padding: 13px 22px;
+            cursor: pointer;
+            transition: background .1s;
+        }
+
+            #lb-close:hover {
+                background: #f03030;
+            }
+
+        /* RESPONSIVE */
+        @media (max-width: 680px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+
+            .card-img {
+                min-height: 200px;
+                border-right: none;
+                border-bottom: 6px solid #000;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            main {
+                padding: 24px 14px 56px;
+            }
+
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-brand {
+                font-size: .85rem;
+            }
+
+            .torch {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <span class="nav-brand">&#x26CF; iosif2011</span>
+        <span class="nav-right">4 PROJECTS</span>
+    </nav>
+
+    <!-- GRASS -->
+    <div class="grass"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="torch torch-l">
+            <div class="torch-fire"></div>
+            <div class="torch-stick"></div>
+        </div>
+        <div class="torch torch-r">
+            <div class="torch-fire"></div>
+            <div class="torch-stick"></div>
+        </div>
+        <h1>iosif2011's <span>projects</span></h1>
+    </header>
+
+    <!-- CARDS -->
+    <main>
+
+        <!-- ── MY GITHUB — featured section ── -->
+        <div class="section-label">&#9658; MY GITHUB</div>
+        <div class="github-section">
+            <div class="github-img" onclick="openLb(event,'images/github.png')">
+                <img src="images/github.png" alt="Github"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="fallback">GH</div>
+                <span class="zoom-hint">[ ZOOM ]</span>
+            </div>
+            <div class="github-content">
+                <div class="github-title">iosif2011</div>
+                <div class="github-sub">My Github Profile</div>
+                <div class="github-desc">All my repos, forks and experiments live here. This is where all the projects below come from.</div>
+                <div class="github-url">github.com/iosif2011</div>
+                <div class="github-btns">
+                    <a class="btn" href="https://github.com/iosif2011" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg>
+                        VISIT GITHUB
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── PROJECTS ── -->
+        <div class="section-label" style="margin-top:48px;">&#9658; PROJECTS</div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-img" onclick="openLb(event,'images/radio.png')">
+                    <img src="images/radio.png" alt="The Best Radio"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="fallback">R</div>
+                    <span class="zoom-hint">[ ZOOM ]</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-top">
+                        <div class="card-num">01 / 04</div>
+                        <div class="card-title">THE BEST RADIO</div>
+                        <div class="card-desc">A 24/7 custom music radio. Plays the same music in sync on every device.</div>
+                        <div class="card-url">iosif2011.github.io/THEBESTRADIO/</div>
+                    </div>
+                    <div class="card-btns">
+                        <span class="btn green" onclick="goto('https://iosif2011.github.io/THEBESTRADIO/')">OPEN &#9658;</span>
+                        <a class="btn" href="https://github.com/iosif2011/THEBESTRADIO" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg>
+                            REPO
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="card-img" onclick="openLb(event,'images/mafia.png')">
+                    <img src="images/mafia.png" alt="Mafia Role Randomizer"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="fallback">M</div>
+                    <span class="zoom-hint">[ ZOOM ]</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-top">
+                        <div class="card-num">02 / 04</div>
+                        <div class="card-title">MAFIA ROLE RANDOMIZER</div>
+                        <div class="card-desc">No cards? No problem. Randomize mafia roles with a full narrator log.</div>
+                        <div class="card-url">iosif2011.github.io/MAFIA-ROLE-RANDOMIZER/</div>
+                    </div>
+                    <div class="card-btns">
+                        <span class="btn green" onclick="goto('https://iosif2011.github.io/MAFIA-ROLE-RANDOMIZER/')">OPEN &#9658;</span>
+                        <a class="btn" href="https://github.com/iosif2011/MAFIA-ROLE-RANDOMIZER" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg>
+                            REPO
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="card-img" onclick="openLb(event,'images/cases.png')">
+                    <img src="images/cases.png" alt="Iosif's Cases"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="fallback">C</div>
+                    <span class="zoom-hint">[ ZOOM ]</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-top">
+                        <div class="card-num">03 / 04</div>
+                        <div class="card-title">IOSIF'S CASES</div>
+                        <div class="card-desc">Open cases, gamble and more. Browser-based case opening.</div>
+                        <div class="card-url">iosif2011.github.io/iosif-s-Cases/</div>
+                    </div>
+                    <div class="card-btns">
+                        <span class="btn green" onclick="goto('https://iosif2011.github.io/iosif-s-Cases/')">OPEN &#9658;</span>
+                        <a class="btn" href="https://github.com/iosif2011/iosif-s-Cases?tab=readme-ov-file" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg>
+                            REPO
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+		
+		<div class="card">
+			<div class="card-img" onclick="openLb(event,'images/map.png')">
+				<img src="images/map.png" alt="My First Custom Map"
+					 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+					<div class="fallback">M</div>
+					<span class="zoom-hint">[ ZOOM ]</span>
+				</div>
+			<div class="card-content">
+				<div class="card-top">
+					<div class="card-num">04 / 04</div>
+					<div class="card-title">My First Custom Map</div>
+					<div class="card-desc">Just a simple map with directions, pins, distance, and measuring.</div>
+					<div class="card-url">https://github.com/iosif2011/MY-FIRST-CUSTOM-MAP?tab=readme-ov-file</div>
+				</div>
+				<div class="card-btns">
+					<span class="btn green" onclick="goto('https://iosif2011.github.io/MY-FIRST-CUSTOM-MAP/')">OPEN &#9658;</span>
+					<a class="btn" href="https://github.com/iosif2011/MY-FIRST-CUSTOM-MAP?tab=readme-ov-file" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+						<svg viewBox="0 0 24 24">
+							<path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+						</svg>
+						REPO
+					</a>
+				</div>
+			</div>
+		</div>
+    
+	</main>
+
+    <!-- FOOTER -->
+    <div class="grass-foot"></div>
+    <footer>
+        <span>iosif2011 &#8212; collection</span>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLb()">
+        <div id="lb-close" onclick="closeLb()">&#10005; CLOSE</div>
+        <img id="lb-img" src="" alt="">
+    </div>
+
+    <script>
+        function goto(url) {
+            window.open(url, '_blank');
+        }
+        function openLb(e, src) {
+            e.stopPropagation();
+            document.getElementById('lb-img').src = src;
+            document.getElementById('lightbox').classList.add('open');
+        }
+        function closeLb() {
+            document.getElementById('lightbox').classList.remove('open');
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeLb();
+        });
+    </script>
+
+</body>
+</html>
